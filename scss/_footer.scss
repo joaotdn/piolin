@@ -1,0 +1,17 @@
+#footer {
+	height: rem-calc(250);
+
+	section {
+		bottom: 0;
+		background-color: #FFF;
+		padding: rem-calc(20);
+	}
+
+	nav {
+		margin-top: rem-calc(10);
+
+		a {
+			margin-left: rem-calc(10);
+		}
+	}
+}

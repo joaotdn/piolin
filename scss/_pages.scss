@@ -1,0 +1,108 @@
+/**
+ * Geral
+ */
+.page-content {
+	margin-top: rem-calc(80);
+	padding-left: rem-calc(10);
+
+	header {
+		h1 {
+			font-size: rem-calc(72);
+		}
+	}
+}
+
+/**
+ * Piollin
+ */
+.group-slide {
+	padding: 0 rem-calc(100);
+	margin-bottom: rem-calc(40);
+	min-width: rem-calc(1000);
+
+	figure {
+		//max-width:  rem-calc(350) !important;
+		//margin: 0 rem-calc(20);
+		padding: rem-calc(20);
+		background: white;
+		@include box-shadow(-4px 6px 3px rgba(24,24,25,.14));
+	}
+
+	figcaption {
+		color: $red;
+		margin-top: rem-calc(10);
+	}
+
+	&.vertical {
+		min-width: 100%;
+		padding: 0;
+		padding-left: rem-calc(20);
+
+		li {
+			@extend %margin-bottom;
+		}
+	}
+}
+
+.tl-slider {
+	p {
+		@extend %margin-top;
+		font-size: rem-calc(12);
+	}
+}
+
+.tl-line {
+	border-bottom: 10px solid #474646;
+	top: rem-calc(61);
+}
+
+.flowslider {
+	padding: 0 rem-calc(100);
+	height: rem-calc(300);
+}
+
+.www_FlowSlider_com-branding {
+	display: none !important;
+	@include opacity(0);
+}
+
+.time-block {
+	width: rem-calc(200);
+	float: left;
+	margin-left: rem-calc(30);
+}
+
+.pointer {
+	width: rem-calc(30);
+	height: rem-calc(30);
+	@include border-radius(100%);
+	border: 5px solid #474646;
+	background-color: #FFF;
+}
+
+.tl-year {
+	margin: 0;
+}
+
+/**
+ * Espetaculos
+ */
+.nav-apresentations {
+	@extend %margin-top;
+}
+
+/**
+ * Imprensa
+ */
+.nav-clipping {
+	h2 {
+		color: $red;
+	}
+	article {
+		@extend %margin-bottom;
+	}
+	img {
+		width: 100%;
+		height: auto;
+	}
+}

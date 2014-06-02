@@ -1,0 +1,61 @@
+/**
+ * Seletores
+ */
+body {
+	overflow-x: hidden;
+	font-size: rem-calc(14);
+}
+
+a {
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+figure {
+	margin: 0;
+}
+
+ul {
+	margin-bottom: 0;
+}
+
+input[type="submit"] {
+	background-color: $green;
+	font-family: 'league_gothicregular';
+	font-size: rem-calc(24);
+	border: none;
+	cursor: pointer;
+}
+
+/**
+ * Containers
+ */
+.row {
+	float: left !important;	
+	min-width: rem-calc(1000) !important;
+	max-width: rem-calc(1000) !important;
+	position: relative;
+}
+
+/**
+ * Classes úteis
+ */
+.text-upp {
+	text-transform: uppercase;
+}
+.rel {
+	position: relative;
+}
+.abs {
+	position: absolute;
+}
+.display-block {
+	display: block;
+}
+.text-columns {
+	@include columns(2);
+}
+.grey {
+	color: #747474;
+}

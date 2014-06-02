@@ -1,0 +1,55 @@
+.logo {
+	margin-top: rem-calc(60);
+	position: relative;
+	z-index: 99;
+}
+
+.bd-images {
+	width: 100%;
+	height: 100%;
+	left: 0; top: 0;
+	z-index: 0;
+
+	figure {
+		width: 100%; height: 100%;
+		@extend %bg-cover;
+	}
+}
+
+#header {
+	height: rem-calc(345);
+}
+
+.page-title {
+	position: absolute;
+	font-size: rem-calc(160);
+	bottom: rem-calc(-245);
+	padding: rem-calc(10) rem-calc(30);
+	left: rem-calc(342);
+	margin: 0;
+}
+
+.bg-red {
+	background-color: $red;
+}
+
+.bg-violet {
+	background-color: $violet;
+}
+
+.bg-blue {
+	background-color: $blue;
+}
+
+.bg-green {
+	background-color: $green;
+}
+
+.nav-groups {
+	top: rem-calc(359);
+	left: rem-calc(750);
+
+	a.active {
+		text-decoration: line-through;
+	}
+}

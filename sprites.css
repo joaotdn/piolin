@@ -1,0 +1,30 @@
+.icon-facebook {
+  background-image: url(images/spritesheet.png);
+  background-position: -202px -43px;
+  width: 21px;
+  height: 21px;
+}
+.icon-logo-footer {
+  background-image: url(images/spritesheet.png);
+  background-position: -202px 0px;
+  width: 88px;
+  height: 43px;
+}
+.icon-logo-loader {
+  background-image: url(images/spritesheet.png);
+  background-position: 0px 0px;
+  width: 202px;
+  height: 99px;
+}
+.icon-logo {
+  background-image: url(images/spritesheet.png);
+  background-position: 0px -99px;
+  width: 202px;
+  height: 99px;
+}
+.icon-twitter {
+  background-image: url(images/spritesheet.png);
+  background-position: -223px -43px;
+  width: 21px;
+  height: 21px;
+}

@@ -1,0 +1,21 @@
+//placeholders
+%bg-cover {
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+%margin-top {
+	margin-top: rem-calc(20);
+}
+
+%margin-bottom {
+	margin-bottom: rem-calc(20);
+}
+
+//Cores
+$red : #e54f4f;
+$violet : #834bf5;
+$blue : #1d82ff;
+$green : #1dffa7;

@@ -1,0 +1,20 @@
+.menu-home {
+	padding: rem-calc(10) rem-calc(15);
+	padding-bottom: 0;
+	background: white;
+	top: rem-calc(160);
+	left: rem-calc(202);
+	z-index: 99;
+	
+	li {
+		margin-bottom: rem-calc(10);
+		a {
+			color: #222;
+			font-size: rem-calc(16);
+		}
+
+		&.active {
+			text-decoration: line-through;
+		}
+	}
+}
