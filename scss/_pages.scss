@@ -7,14 +7,33 @@
 
 	header {
 		h1 {
-			font-size: rem-calc(72);
+			font-size: rem-calc(64);
+			line-height: 1;
 		}
 	}
+
+	article {
+		margin-top: rem-calc(20);
+	}
+
+
 }
 
 /**
  * Piollin
  */
+.nav-groups {
+	li {
+		&.active {
+			text-decoration: line-through;
+		}
+	}
+}
+
+.group-content {
+	min-height: rem-calc(350);
+}
+
 .group-slide {
 	padding: 0 rem-calc(100);
 	margin-bottom: rem-calc(40);
@@ -37,6 +56,7 @@
 		min-width: 100%;
 		padding: 0;
 		padding-left: rem-calc(20);
+		margin-top: rem-calc(20);
 
 		li {
 			@extend %margin-bottom;
@@ -89,6 +109,23 @@
  */
 .nav-apresentations {
 	@extend %margin-top;
+
+	li {
+		&.active {
+			text-decoration: line-through;
+		}
+	}
+}
+
+/**
+ * Projetos
+ */
+.nav-projects {
+	li {
+		&.active {
+			text-decoration: line-through;
+		}
+	}
 }
 
 /**

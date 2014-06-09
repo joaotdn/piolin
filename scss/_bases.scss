@@ -37,6 +37,9 @@ input[type="submit"] {
 	max-width: rem-calc(1000) !important;
 	position: relative;
 }
+.waiting-post {
+	display: none;
+}
 
 /**
  * Classes úteis

@@ -234,11 +234,6 @@ $.fn.cycle.defaults = {
 
 })(jQuery);
 
-// Foundation JavaScript
-// Documentation can be found at: http://foundation.zurb.com/docs
-$(document).foundation();
-
-
 $(document).ready(function() {
     //Preload
     $('body').jpreLoader({
@@ -249,16 +244,31 @@ $(document).ready(function() {
       closeBtnText: ''
     });
 
-    //Slide de imagens
+    //link ativo
+    function activateLink(el,ct) {
+        $(el,ct).on('click',function(e) {
+            e.preventDefault();
+            $(this).parents('li').addClass('active').siblings('li').removeClass('active');
+        });
+    };
+    activateLink('a','.nav-groups');
+    activateLink('a','.nav-apresentations');
+    activateLink('a','.nav-projects');
+
+    //Slide de imagens em todas as paginas
     $('.bd-images').cycle();
 
     //Gerar legendas em imagens
-    $.each($('img','.page-thumb'), function(i) {
-        var caption = $(this).attr('data-caption');
-        $('.page-thumb').eq(i).find('figcaption')
-        .text(caption);
-    });
+    function showCaption() {
+        $.each($('img','.page-thumb'), function(i) {
+            var caption = $(this).attr('data-caption');
+            $('.page-thumb').eq(i).find('figcaption')
+            .text(caption);
+        });
+    };
+    showCaption();   
 
+    //Gerar timeline
     FlowSlider(".flowslider", {
         startPosition: 0.0,
         position: 0.5,
@@ -270,4 +280,144 @@ $(document).ready(function() {
         }]
     });
 
+    //Configurar ajax
+    $.ajaxSetup({
+        url : getData.ajaxDir,
+        type : 'GET',
+        dataType : 'html',
+    });
+
+    //Piollin
+    //Menu sub paginas
+    $('li:first','.nav-groups').addClass('active');
+    $('a','.nav-groups').on('click',function(e) {
+        //e.preventDefault();
+        //$(this).parents('li').addClass('active').siblings('li').removeClass('active');
+
+        var page_name = $(this).text();
+        $('.group-title').text(page_name);
+
+        $.ajax({ 
+            data : {
+                action : 'request_child_piollin',
+                page_name : page_name
+            },
+            beforeSend : function() {
+                $('.group-content').fadeOut('slow'); 
+                $('.waiting-post').fadeIn('fast');     
+            },
+            complete : function() {
+                $('.waiting-post').fadeOut('fast');
+                $('.group-content').fadeIn('slow');
+            },
+            success : function(data) {
+                $('.group-content').html(data);
+            },
+            error : function(xhr) {
+                alert('Ocorreu algum erro. Tente novamente.');
+            }
+        });
+    });
+
+    $.each($('li','.group-slide'), function(i) {
+       if(i <= 2) {
+        $(this).addClass('clearing-featured-img');
+       }
+    });
+
+    //Espetáculos
+    //requisitar peça
+    $('li:first','.nav-apresentations').addClass('active');
+    $('a','.nav-apresentations').on('click',function(e) {
+        //e.preventDefault();
+        var postid = $(this).data('postid');
+
+        $.ajax({
+            data : {
+                action : 'request_espetaculo',
+                postid : postid
+            },
+            beforeSend : function() {
+                $('.esp-text').fadeOut('slow', function() {
+                    $('.waiting-post').fadeIn('fast');
+                });      
+            },
+            complete : function() {
+                $('.waiting-post').fadeOut('fast', function() {
+                    $('.esp-text').fadeIn('slow');
+                });
+            },
+            success : function(data) { 
+                $('.esp-text').html(data);
+            },
+            error : function(xhr) {
+                alert('Ocorreu algum erro. Tente novamente.');
+            }
+        });
+
+        $.ajax({
+            data : {
+                action : 'request_espetaculo_images',
+                postid : postid
+            },
+            beforeSend : function() {
+                $('.group-slide.vertical').fadeOut('slow');      
+            },
+            complete : function() {
+                $('.group-slide.vertical').fadeIn('fast');
+            },
+            success : function(data) {
+                if(data) {
+                    $('.group-slide.vertical').html(data);
+                    $(document).foundation();
+                    showCaption();
+                } else {
+                    console.log('sem imagens');
+                }
+            },
+            error : function(xhr) {
+                alert('Ocorreu algum erro. Tente novamente.');
+            }
+        });
+    });
+    
+    $.each($('li','.nav-apresentations'), function(i) {
+        if(i <= 2) {
+            $(this).addClass('clearing-featured-img');
+        }
+    });
+
+    //Projetos
+    $('li:first','.nav-projects').addClass('active');
+    $('a','.nav-projects').on('click',function(e) {
+        var postid = $(this).data('postid');
+        $.ajax({
+            data : {
+                action : 'request_projeto',
+                postid : postid
+            },
+            beforeSend : function() {
+                $('.pj-text').fadeOut('slow', function() {
+                    $('.waiting-post').fadeIn('fast');
+                });      
+            },
+            complete : function() {
+                $('.waiting-post').fadeOut('fast', function() {
+                    $('.pj-text').fadeIn('slow');
+                });
+            },
+            success : function(data) { 
+                $('.pj-text').html(data);
+            },
+            error : function(xhr) {
+                alert('Ocorreu algum erro. Tente novamente.');
+            }
+        });
+    })
+    
+
 }, new WOW().init());
+
+// Foundation JavaScript
+// Documentation can be found at: http://foundation.zurb.com/docs
+$(document).foundation();
