@@ -5,8 +5,16 @@
           <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="Página principal" class="display-block icon-logo-footer"></a>
         </figure>
         <nav class="left">
-          <a href="#" class="display-block left icon-facebook" title="Siga-nos no Facebook"></a>
-          <a href="#" class="display-block left icon-twitter" title="Siga-nos no Twitter"></a>
+          <?php 
+            $fb = get_option('nt_fb');
+            $tw = get_option('nt_tw');
+          ?>
+          <?php if($fb != ''): ?>
+          <a href="<?php echo $fb; ?>" class="display-block left icon-facebook" title="Siga-nos no Facebook"></a>
+          <?php endif; ?>
+          <?php if($tw != ''): ?>
+          <a href="http://twitter.com/<?php echo $tw; ?>" class="display-block left icon-twitter" title="Siga-nos no Twitter"></a>
+          <?php endif; ?>
         </nav>
       </section>
     </footer><!-- //footer -->   

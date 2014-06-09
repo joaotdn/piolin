@@ -6,6 +6,7 @@ if ( function_exists( 'add_theme_support' ) ) {
 //Get new images formats
 if ( function_exists( 'add_image_size' ) ) { 
   add_image_size( 'piollin-thumb', 400, 400, true );
+  add_image_size( 'clipping', 660, 420, true );
 }
 
 add_filter( 'jpeg_quality', 'tgm_image_full_quality' );
@@ -84,17 +85,14 @@ add_shortcode('wpb_childpages', 'wpb_list_child_pages');
 require_once ( get_stylesheet_directory() . '/post-types/slider.php' );
 
 function imageSlider() {
-  $args = array( 'post_type' => 'slider', 'posts_per_page' => 15, 'orderby' => 'rand' ); 
-  $loop = new WP_Query( $args );
-  while ( $loop->have_posts() ) : $loop->the_post();
-
-  $thumb = wp_get_attachment_image_src( get_post_thumbnail_id(returnId()), 'full' );
-  $thumb = $thumb['0']; //Return thumbnail URI
+  $page = get_page_by_title('Slider Inicial');
+  $images = get_field('sliders', $page->ID); 
+  shuffle($images);
+  foreach($images as $image):
   ?>
-    <figure style="background-image: url(<?php echo $thumb; ?>);"></figure>
+    <figure style="background-image: url(<?php echo $image['slide']; ?>);"></figure>
   <?php
-  endwhile;
-  wp_reset_query();
+  endforeach;
 }
 
 //Espetáculos
@@ -105,6 +103,9 @@ require_once ( get_stylesheet_directory() . '/post-types/projetos.php' );
 
 //Ajax
 require_once ( get_stylesheet_directory() . '/includes/ajax.php' );
+
+//Opções do tema
+require_once ( get_stylesheet_directory() . '/theme-options.php' );
 
 
 ?>

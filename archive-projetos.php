@@ -21,7 +21,7 @@
         </ul>
       </nav>
 
-      <article class="small-8 left wow fadeInUp" data-wow-delay=".5s" data-wow-duration="1s">
+      <article class="small-8 left wow pj-article fadeInUp" data-wow-delay=".5s" data-wow-duration="1s">
         <div class="waiting-post small-12 left text-center">
           <img src="<?php echo get_template_directory_uri(); ?>/images/ajax-loader.gif" alt="">
         </div>

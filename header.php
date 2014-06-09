@@ -27,14 +27,23 @@
         <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="display-block left logo" title="Página principal">
           <div class="icon-logo"></div>
         </a>
-
+        <?php $post_type = get_post_type( get_the_ID() ); ?>
         <nav class="menu-home abs wow slideInDown" data-wow-delay=".5s" data-wow-duration="2s">
           <ul class="no-bullet">
-            <li><a href="page-piollin.php" class="text-upp">Piollin</a></li>
-            <li class="active"><a href="page-espetaculos.php" class="text-upp">Espetáculos</a></li>
-            <li><a href="page-projetos.php" class="text-upp">Projetos</a></li>
-            <li><a href="page-imprensa.php" class="text-upp">Imprensa</a></li>
-            <li><a href="page-contato.php" class="text-upp">Contato</a></li>
+            <?php $page = get_page_by_title('Piollin'); ?>
+          <li <?php if(is_page('piollin')): echo 'class="active"'; endif; ?>><a href="<?php echo get_page_link($page->ID); ?>" class="text-upp">Piollin</a></li>
+          
+          <?php $espetaculos = get_post_type_archive_link('espetaculos'); ?>
+          <li <?php if($post_type == 'espetaculos') { echo 'class="active"'; } ?>><a href="<?php echo $espetaculos; ?>" class="text-upp">Espetáculos</a></li>
+
+          <?php $projetos = get_post_type_archive_link('projetos'); ?>
+          <li <?php if($post_type == 'projetos') { echo 'class="active"'; } ?>><a href="<?php echo $projetos; ?>" class="text-upp">Projetos</a></li>
+          
+          <?php $category_id = get_cat_ID( 'Imprensa' ); $category_link = get_category_link( $category_id ); ?>
+          <li <?php if(is_category('imprensa')): echo 'class="active"'; endif; ?>><a href="<?php echo esc_url( $category_link ); ?>" class="text-upp">Imprensa</a></li>
+
+          <?php $page = get_page_by_title('Contato'); ?>
+          <li <?php if(is_page('contato')): echo 'class="active"'; endif; ?>><a href="<?php echo get_page_link($page->ID); ?>" class="text-upp">Contato</a></li>
           </ul>
         </nav>
     <?php endif; ?>
