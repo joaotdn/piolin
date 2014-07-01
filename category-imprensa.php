@@ -50,6 +50,7 @@
 
           <?php endwhile; else: endif; wp_reset_query(); ?>
         </nav>
+        
       </article>
 
     </section><!-- //page content -->

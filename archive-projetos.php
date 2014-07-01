@@ -31,7 +31,7 @@
           $loop = new WP_Query( $args );
           while ( $loop->have_posts() ) : $loop->the_post();
         ?>
-        <div class="pj-text small-12 left">
+        <div class="pj-text small-12 left txt">
           <header class="small-12 left">
             <h1 class="text-upp"><?php the_title(); ?></h1>
           </header>
@@ -44,10 +44,38 @@
             ?>
           </div>
         </div>
-        <?php endwhile; ?>
-        <?php wp_reset_query(); ?>
       </article>
-
+      <?php endwhile; ?>
+      <?php wp_reset_query(); ?>
     </section><!-- //page content -->
+
+    <?php 
+      $args = array( 'post_type' => 'projetos', 'posts_per_page' => 1, 'orderby' => 'date' ); 
+      $loop = new WP_Query( $args );
+      while ( $loop->have_posts() ) : $loop->the_post();
+      global $post, $post_id; 
+    ?>
+    <nav class="group-slide pj-images small-12 left">
+      <ul class="small-block-grid-3 clearing-thumbs clearing-feature" data-clearing>
+         <?php 
+          $images = get_field('pj_images', $post->ID); 
+            
+          foreach($images as $image):
+            $thumb = wp_get_attachment_image_src( $image['pj_image'], 'piollin-thumb' );
+            $full = wp_get_attachment_image_src( $image['pj_image'], 'full' );
+            $thumb = $thumb['0'];
+            $full = $full['0'];
+        ?>
+        <li>
+          <figure class="small-12 left rel page-thumb">
+            <a href="<?php echo $full; ?>" class="display-block small-12 left"><img src="<?php echo $thumb; ?>" alt="" class="small-12" data-caption="<?php echo $image['pj_description']; ?>"></a>
+            <figcaption class="small-12 left"></figcaption>
+          </figure>
+        </li>
+        <?php endforeach; ?>
+      </ul>
+    </nav><!-- //fotos -->
+    <?php endwhile; ?>
+    <?php wp_reset_query(); ?>
 
 <?php get_footer(); ?>

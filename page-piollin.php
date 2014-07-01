@@ -5,6 +5,7 @@
           <nav class="abs nav-groups">
             <ul class="no-bullet text-upp wow fadeIn" data-wow-delay="2s" data-wow-duration="1s">
             <?php 
+              /*
               $page = get_page_by_title('Piollin');
               $timeline = get_page_by_title('Timeline');
               $args = array(
@@ -14,7 +15,9 @@
                 'exclude'      => $timeline->ID
               ); 
               wp_list_pages( $args );
+              */
             ?>
+              <li><a href="http://www.piollin.org.br/" target="_blank" title="Centro Cultural">Centro Cultural</a></li>
             </ul>
           </nav>
         </div>

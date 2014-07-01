@@ -26,7 +26,7 @@
           <img src="<?php echo get_template_directory_uri(); ?>/images/ajax-loader.gif" alt="">
         </div>
 
-        <div class="esp-text small-12 left">
+        <div class="esp-text small-12 left txt">
         <header class="small-12 left">
           <?php 
             $args = array( 'post_type' => 'espetaculos', 'posts_per_page' => 1, 'orderby' => 'date' ); 
@@ -39,7 +39,41 @@
         <?php
           global $post, $post_id; 
           $content = get_field('esp_desc', $post->ID); 
+          $ficha_tecnica = get_field('ficha_tecnica', $post->ID); 
+          $apresentacoes = get_field('apresentacoes', $post->ID); 
+
+          /*
+          Descrição do espetáculo
+           */
           echo $content;
+
+          /*
+          Ficha Técnica
+           */
+          if($ficha_tecnica) {
+            ?>
+            <h3 class="text-upp">Ficha Técnica</h3>
+            <p>
+            <?php
+            foreach ($ficha_tecnica as $ficha) {
+              print "<span>". $ficha['ficha_cargo'] ." - ". $ficha['responsavel'] ."</span><br>";
+            }
+            ?></p><?php
+          }
+
+          /*
+          Apresentações
+           */
+          if($apresentacoes) {
+            ?>
+            <h3 class="text-upp">Apresentações</h3>
+            <p>
+            <?php
+            foreach ($apresentacoes as $apresentacao) {
+              print "<span>". $apresentacao['apresentacoes_ano'] ." - ". $apresentacao['apresentacoes_nome'] ." - ". $apresentacao['apresentacoes_local'] ."</span><br>";
+            }
+            ?></p><?php
+          }
         ?>
 
         <?php endwhile; ?>

@@ -251,7 +251,7 @@ $(document).ready(function() {
             $(this).parents('li').addClass('active').siblings('li').removeClass('active');
         });
     };
-    activateLink('a','.nav-groups');
+    //activateLink('a','.nav-groups');
     activateLink('a','.nav-apresentations');
     activateLink('a','.nav-projects');
 
@@ -289,7 +289,8 @@ $(document).ready(function() {
 
     //Piollin
     //Menu sub paginas
-    $('li:first','.nav-groups').addClass('active');
+    //$('li:first','.nav-groups').addClass('active');
+    /*
     $('a','.nav-groups').on('click',function(e) {
         //e.preventDefault();
         //$(this).parents('li').addClass('active').siblings('li').removeClass('active');
@@ -318,12 +319,14 @@ $(document).ready(function() {
             }
         });
     });
-
+    */
+   
     $.each($('li','.group-slide'), function(i) {
        if(i <= 2) {
         $(this).addClass('clearing-featured-img');
        }
     });
+
 
     //Espetáculos
     //requisitar peça
@@ -389,6 +392,7 @@ $(document).ready(function() {
 
     //Projetos
     $('li:first','.nav-projects').addClass('active');
+    
     $('a','.nav-projects').on('click',function(e) {
         var postid = $(this).data('postid');
         $.ajax({
@@ -408,6 +412,25 @@ $(document).ready(function() {
             },
             success : function(data) { 
                 $('.pj-text').html(data);
+            },
+            error : function(xhr) {
+                alert('Ocorreu algum erro. Tente novamente.');
+            }
+        });
+
+        $.ajax({
+            data : {
+                action : 'request_projeto_images',
+                postid : postid
+            },
+            beforeSend : function() {
+                $('.pj-images').fadeOut('slow');     
+            },
+            complete : function() {
+                $('.pj-images').fadeIn('slow');
+            },
+            success : function(data) { 
+                $('.pj-images').html(data);
             },
             error : function(xhr) {
                 alert('Ocorreu algum erro. Tente novamente.');
