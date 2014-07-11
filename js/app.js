@@ -436,7 +436,72 @@ $(document).ready(function() {
                 alert('Ocorreu algum erro. Tente novamente.');
             }
         });
-    })
+    });
+
+
+    /*
+        Pagina imprensa
+     */
+    $('a','.midia').click(function() {
+        var title = $(this).text();
+
+        $('.midia-section').text(title);
+    });
+    
+    //Requisitar releases
+    $('a[title="Imprensa"]').on('click',function(e) {
+        e.preventDefault();
+
+         $.ajax({
+            data : {
+                action : 'request_imprensa',
+            },
+            beforeSend : function() {
+                $('.nav-releases').fadeOut('slow', function() {
+                    $('.waiting-post').fadeIn('fast');
+                });     
+            },
+            complete : function() {
+                $('.waiting-post').fadeOut('fast', function() {
+                    $('.nav-releases').fadeIn('slow');
+                });
+            },
+            success : function(data) { 
+                $('.nav-releases').html(data);
+            },
+            error : function(xhr) {
+                alert('Ocorreu algum erro. Tente novamente.');
+            }
+        });
+    });
+
+    //Requisitar Clipping
+    $('a[title="Clipping"]').on('click',function(e) {
+        e.preventDefault();
+
+         $.ajax({
+            data : {
+                action : 'request_clipping',
+            },
+            beforeSend : function() {
+                $('.nav-releases').fadeOut('slow', function() {
+                    $('.waiting-post').fadeIn('fast');
+                });     
+            },
+            complete : function() {
+                $('.waiting-post').fadeOut('fast', function() {
+                    $('.nav-releases').fadeIn('slow');
+                });
+            },
+            success : function(data) { 
+                $('.nav-releases').html(data);
+            },
+            error : function(xhr) {
+                alert('Ocorreu algum erro. Tente novamente.');
+            }
+        });
+    });
+    
     
 
 }, new WOW().init());

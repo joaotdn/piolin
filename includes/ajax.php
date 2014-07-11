@@ -170,4 +170,63 @@ function request_projeto_images() {
   exit();
 }
 
+/*
+  Imprensa
+ */
+
+//Requisitar pagina Imprensa
+add_action( 'wp_ajax_nopriv_request_imprensa', 'request_imprensa' );
+add_action( 'wp_ajax_request_imprensa', 'request_imprensa' );
+
+function request_imprensa() {  
+
+  $page = get_page_by_title('Imprensa');
+  $releases = get_field('releases', $page->ID); 
+  foreach($releases as $release):
+
+  ?>
+    <ul class="no-bullet">
+      <li>
+        <h4 class="text-upp red"><?php echo $release['release_title']; ?></h4>
+        <p><a href="<?php echo $release['release_file']; ?>" class="button">Baixar</a></p>
+      </li>
+    </ul>
+  <?php
+  endforeach;
+  exit();
+}
+
+
+//Requisitar Clipping
+add_action( 'wp_ajax_nopriv_request_clipping', 'request_clipping' );
+add_action( 'wp_ajax_request_clipping', 'request_clipping' );
+
+function request_clipping() {  
+
+  query_posts('showposts=20&category_name=clipping'); 
+  if (have_posts()): while (have_posts()) : the_post();
+
+  $thumb = wp_get_attachment_image_src( get_post_thumbnail_id(returnId()), 'clipping' );
+  $thumb = $thumb['0'];
+
+  $full = wp_get_attachment_image_src( get_post_thumbnail_id(returnId()), 'full' );
+  $full = $full['0'];
+
+  ?>
+    <article class="small-12 left">
+      <header class="small-12 left">
+        <h2 class="text-upp"><?php the_title(); ?></h2>
+      </header>
+      <figure class="small-12 left">
+        <a href="<?php echo $full; ?>" title="<?php the_title(); ?>" class="display-block" data-lightbox="clipping" data-title="<?php the_title(); ?>">
+          <img src="<?php echo $thumb; ?>" alt="">
+        </a>
+      </figure>
+    </article>
+  <?php
+  endwhile; else: endif; wp_reset_query();
+  exit();
+}
+
+
 ?>

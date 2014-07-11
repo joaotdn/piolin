@@ -46,6 +46,7 @@
           <?php 
             $page = get_page_by_title('Piollin');
             $images = get_field('piollin_images', $page->ID); 
+            
             foreach($images as $image):
               $thumb = wp_get_attachment_image_src( $image['piollin_image'], 'piollin-thumb' );
               $full = wp_get_attachment_image_src( $image['piollin_image'], 'full' );

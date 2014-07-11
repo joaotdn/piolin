@@ -39,8 +39,8 @@
           <?php $projetos = get_post_type_archive_link('projetos'); ?>
           <li <?php if($post_type == 'projetos') { echo 'class="active"'; } ?>><a href="<?php echo $projetos; ?>" class="text-upp">Projetos</a></li>
           
-          <?php $category_id = get_cat_ID( 'Imprensa' ); $category_link = get_category_link( $category_id ); ?>
-          <li <?php if(is_category('imprensa')): echo 'class="active"'; endif; ?>><a href="<?php echo esc_url( $category_link ); ?>" class="text-upp">Imprensa</a></li>
+          <?php $page = get_page_by_title('Imprensa'); ?>
+          <li <?php if(is_page('imprensa')): echo 'class="active"'; endif; ?>><a href="<?php echo get_page_link($page->ID); ?>" class="text-upp">Imprensa</a></li>
 
           <?php $page = get_page_by_title('Contato'); ?>
           <li <?php if(is_page('contato')): echo 'class="active"'; endif; ?>><a href="<?php echo get_page_link($page->ID); ?>" class="text-upp">Contato</a></li>
